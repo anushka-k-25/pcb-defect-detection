@@ -8,6 +8,7 @@ from ultralytics import YOLO
 import time
 import pandas as pd
 import plotly.express as px
+import gdown
 
 # -------------------------------
 # Page Config
@@ -19,12 +20,14 @@ st.set_page_config(page_title=" AI PCB Inspector", layout="wide", page_icon="ðŸ›
 # -------------------------------
 
 # --- YOLO model setup ---
-MODEL_URL = "https://drive.google.com/uc?id=1rTcm45pK3nfKaj94ERMueumaQmZtVqKH"  # <-- replace <file_id> with your Google Drive file ID
-MODEL_PATH = "best.pt"
 
-# Download model if not already present
+MODEL_PATH = "best.pt"
+FILE_ID = "1rTcm45pK3nfKaj94ERMueumaQmZtVqKH"  # your Google Drive file ID
+MODEL_URL = f"https://drive.google.com/uc?id={FILE_ID}"
+
+# Download model if not exists
 if not os.path.exists(MODEL_PATH):
-    gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
+    gdown.download(MODEL_URL, MODEL_PATH, quiet=False, fuzzy=True)  # fuzzy=True handles large files
 
 # Load YOLO model
 model = YOLO(MODEL_PATH)
