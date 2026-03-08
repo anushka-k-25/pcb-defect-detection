@@ -15,7 +15,7 @@ st.set_page_config(page_title=" AI PCB Inspector", layout="wide", page_icon="ðŸ›
 # -------------------------------
 # Load YOLO Model
 # -------------------------------
-model = YOLO(r"C:\Users\anush\pcb-defect-detection\runs\detect\pcb_defect_model\weights\best.pt")
+model = YOLO(r"runs\detect\pcb_defect_model\weights\best.pt")
 
 # -------------------------------
 # Session State
