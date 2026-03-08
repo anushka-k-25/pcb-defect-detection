@@ -1,3 +1,5 @@
+import os
+
 import streamlit as st
 from PIL import Image
 import cv2
@@ -15,7 +17,17 @@ st.set_page_config(page_title=" AI PCB Inspector", layout="wide", page_icon="ðŸ›
 # -------------------------------
 # Load YOLO Model
 # -------------------------------
-model = YOLO(r"runs\detect\pcb_defect_model\weights\best.pt")
+
+# --- YOLO model setup ---
+MODEL_URL = "https://drive.google.com/uc?id=1rTcm45pK3nfKaj94ERMueumaQmZtVqKH"  # <-- replace <file_id> with your Google Drive file ID
+MODEL_PATH = "best.pt"
+
+# Download model if not already present
+if not os.path.exists(MODEL_PATH):
+    gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
+
+# Load YOLO model
+model = YOLO(MODEL_PATH)
 
 # -------------------------------
 # Session State
